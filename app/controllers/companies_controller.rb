@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
 
     if @company.save
-      login(@company)
+      company_login(@company)
       redirect_to root_url, notice: 'Aramıza hoş geldin!'
     else
       render :new
