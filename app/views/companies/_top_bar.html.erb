@@ -16,12 +16,7 @@
               </ul>
           </li>
         <% else %>
-          <li class="divider"></li>
-          <li><%= link_to " Aday Olarak Kaydol", register_path %></li>
-          <li><%= link_to " Şirket Olarak Kaydol", new_company_path %></li>
-          <li class="divider"></li>
-          <li><%= link_to "Oturum Aç", login_path %></li>
-          <li class="divider"></li>
+          <%= render 'companies/top_detect'%>
         <% end %>
       </ul>
     </section>

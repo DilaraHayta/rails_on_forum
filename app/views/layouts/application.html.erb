@@ -15,13 +15,13 @@
 
   <body>
 
-
-
+    
     <% if current_user %>
-        <%= render 'users/top_bar'%>
-   <% else %>
-          <%= render 'companies/top_bar'%>
+      <%= render 'users/top_bar'%>
+    <% else %>
+      <%= render 'companies/top_bar'%>
     <% end %>
+
 
     <div class="row">
       <%= render 'layouts/flash_messages'%>
