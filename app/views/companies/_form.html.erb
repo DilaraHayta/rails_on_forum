@@ -1,0 +1,38 @@
+<%= form_for @company, data: {abide: ''} do |form| %>
+  <%= render 'layouts/form_errors', object: @company %>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= form.label :company_name %>
+      <%= form.text_field :company_name, required: true, pattern: :alpha %>
+      <%= show_error_message %>
+    </div>
+
+    <div class="large-12 columns">
+      <%= form.label :username %>
+      <%= form.text_field :username, required: true, pattern: :alpha %>
+      <%= show_error_message %>
+    </div>
+    <div class="large-12 columns">
+      <%= form.label :company_email %>
+      <%= form.email_field :company_email, required: true, pattern: :email %>
+      <%= show_error_message('Geçerli bir e-posta adresi giriniz.') %>
+    </div>
+    <% if params[:action] == 'new' || params[:action] == 'create' %>
+    <div class="large-6 columns">
+      <%= form.label :password %>
+      <%= form.password_field :password, required: true, pattern: :password %>
+      <%= show_error_message('Parola, bir büyük harf, bir rakam ve bir
+      de özel karakter içermeli ve en az 8 karakterden oluşmalıdır.') %>
+    </div>
+    <div class="large-6 columns">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, required: true, pattern: :password %>
+      <%= show_error_message('Parola, bir büyük harf, bir rakam ve bir
+      de özel karakter içermeli ve en az 8 karakterden oluşmalıdır.') %>
+    </div>
+    <% end %>
+    <div class="large-12 columns">
+      <%= form.submit class: 'button right' %>
+    </div>
+  </div>
+<% end %>

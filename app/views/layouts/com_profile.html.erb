@@ -1,0 +1,36 @@
+<% content_for(:content) do %>
+<div class="row">
+  <div class="large-12 columns">
+    <div class="large-2 columns">
+      <%= image_tag @company.avatar_url, class: 'profile-image round' %>
+    </div>
+
+    <div class="large-10 columns">
+      <h2><%= @company.company_name %></h2>
+      <p><%= @company.company_email %></p>
+      <div class="button-bar">
+        <ul class="button-group radius">
+          <li><%= link_to "Konular", com_profile_path(@company, sayfa: 'konular'),
+                                     class: 'small button secondary' %></li>
+          <li><%= link_to "Yorumlar", com_profile_path(@company, sayfa: 'yorumlar'),
+                                      class: 'small button secondary' %></li>
+          <% if current_company == @company %>
+            <li><%= link_to "Profilimi düzenle", com_edit_profile_path(@company),
+                                                 class: 'small button secondary' %></li>
+            <li><%= link_to "Hesabımı sil.", @company,
+                                             method: :delete,
+                                             data: {confirm: 'Hesabınızı silmek istediğinize emin misiniz?'},
+                                             class: 'small button alert' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div><hr>
+
+    <div class="large-12 columns">
+      <%= yield :profile_content %>
+    </div>
+
+  </div>
+</div>
+<% end %>
+<%= render template: "layouts/application" %>
