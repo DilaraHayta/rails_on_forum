@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update, :destroy]
   before_action only: [:new, :create] {@forum = Forum.find(params[:forum_id])}
 
-  
+
   def new
     @topic = @forum.topics.new
   end
@@ -29,15 +29,16 @@ class TopicsController < ApplicationController
   end
 
   def show
-    if current_user
-      @topic = Topic.includes(:forum, :comments, :user).find(params[:id])
-      @comments = @topic.comments.includes(:user)
-    elsif current_company
+
+    if current_company
       @topic = Topic.includes(:forum, :comments, :company).find(params[:id])
       @comments = @topic.comments.includes(:company)
+    else
+      @topic = Topic.includes(:forum, :comments, :user).find(params[:id])
+      @comments = @topic.comments.includes(:user)
     end
 
-      
+
   end
 
   def edit() end

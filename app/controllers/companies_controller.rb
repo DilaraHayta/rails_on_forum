@@ -20,12 +20,12 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    sayfa = params[:sayfa] || 'konular'
+    sayfa = params[:sayfa] || 'İlanlar'
 
-    if sayfa == 'konular'
+    if sayfa == 'İlanlar'
       @company = Company.includes(:topics).find_by_username(params[:id])
       @data = @company.topics.includes(:forum)
-    elsif sayfa == 'yorumlar'
+    elsif sayfa == 'Başvurular'
       @company = Company.includes(:comments).find_by_username(params[:id])
       @data = @company.comments.includes(:topic)
     end
@@ -44,7 +44,8 @@ class CompaniesController < ApplicationController
     end
 
     if @company.update(update_params)
-      redirect_to profile_url(@company), notice: 'Profil bilgileriniz güncellendi.'
+
+      redirect_to company_url(@company), notice: 'Profil bilgileriniz güncellendi.'
     else
       render :edit, layout: "com_profile"
     end

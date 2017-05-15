@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515015320) do
+ActiveRecord::Schema.define(version: 20170515061112) do
 
   create_table "comments", force: true do |t|
-    t.text     "body",       null: false
     t.integer  "user_id"
     t.integer  "topic_id"
     t.datetime "created_at"
@@ -57,7 +56,6 @@ ActiveRecord::Schema.define(version: 20170515015320) do
   add_index "topics", ["company_id"], name: "index_topics_on_company_id"
   add_index "topics", ["forum_id"], name: "index_topics_on_forum_id"
   add_index "topics", ["user_id"], name: "index_topics_on_user_id"
-  add_index "topics", [nil], name: "index_topics_on_username", unique: true
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

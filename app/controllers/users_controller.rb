@@ -20,12 +20,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    sayfa = params[:sayfa] || 'konular'
+    sayfa = params[:sayfa] || 'İlanlar'
 
-    if sayfa == 'konular'
+    if sayfa == 'İlanlar'
       @user = User.includes(:topics).find_by_username(params[:id])
       @data = @user.topics.includes(:forum)
-    else
+    elsif sayfa == 'Başvurular'
       @user = User.includes(:comments).find_by_username(params[:id])
       @data = @user.comments.includes(:topic)
     end

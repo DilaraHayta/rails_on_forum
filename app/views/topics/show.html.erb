@@ -2,20 +2,20 @@
 <div class="topics panel columns radius ">
   <h2><%= @topic.title %></h2>
   <p><%= markdown @topic.body  %></p>
- 
+
 </div>
 <div>
-    <%= link_to "Yorum Ekle", new_topic_comment_path(@topic),
+    <%= link_to "Başvur", new_topic_comment_path(@topic),
                               class:"tiny button radius" if signed_in? %>
     <% if current_user == @topic.user %>
       <%= link_to "Düzenle", edit_topic_path(@topic), class:"tiny button radius" %>
       <%= link_to "Sil", @topic,
                          method: :delete,
                          class:"tiny button alert radius",
-                         data: {confirm: 'Konuyu silmek istediğinize emin misiniz?'} %>
+                         data: {confirm: 'İlanı silmek istediğinize emin misiniz?'} %>
     <% end %>
 </div>
 <div class="comments">
-  <h2>Yorumlar (<%= @topic.comments_count %>)</h2><hr>
+  <h2>Başvurular (<%= @topic.comments_count %>)</h2><hr>
   <%= render @comments %>
 </div>

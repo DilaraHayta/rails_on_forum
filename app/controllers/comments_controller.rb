@@ -11,11 +11,11 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @topic.comments.new(comment_params)
+    @comment = @topic.comments.new()
     @comment.user = current_user
 
     if @comment.save
-      redirect_to topic_url(@topic), notice: 'Yorumunuz eklendi.'
+      redirect_to topic_url(@topic), notice: 'Başvuru eklendi.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to topic_url(@comment.topic), notice: 'Yorumunuz başarıyla güncellendi.'
+      redirect_to topic_url(@comment.topic), notice: 'Başvuru başarıyla güncellendi.'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to topic_url(@comment.topic), notice: 'Yorumunuz başarıyla silindi'
+    redirect_to topic_url(@comment.topic), notice: 'Başvuru başarıyla silindi'
   end
 
   private

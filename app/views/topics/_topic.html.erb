@@ -2,9 +2,9 @@
   <div class="small-10 columns">
     <h5><%= link_to topic.title, topic %></h5>
     <p><%= markdown truncate(topic.body, length: 50, escape:false), links: false  %></p>
-   
+
   </div>
   <div class="small-2 columns text-center answer-count">
-    <strong><%= topic.comments_count %></strong><br>Yorum
+    <strong><%= topic.comments_count %></strong><br>Başvuru
   </div>
 </div>

@@ -1,9 +1,8 @@
-<% provide :title, 'Yorum Ekle' %>
+<% provide :title, 'İlan Başvurusu' %>
 <div class="topics panel columns radius ">
   <h2><%= @topic.title %></h2>
   <p><%= markdown @topic.body  %></p>
 </div>
 <div class="small-11 columns offset-1">
-  <h4>Konuya yorum yapın.</h4>
   <%= render 'form' %>
 </div>

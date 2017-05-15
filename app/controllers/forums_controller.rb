@@ -12,12 +12,12 @@ class ForumsController < ApplicationController
   end
 
   def show
-    if current_user
-      @forum  = Forum.find(params[:id])
-      @topics = @forum.topics.includes(:user)
-    elsif current_company
+    if current_company
       @forum  = Forum.find(params[:id])
       @topics = @forum.topics.includes(:company)
-    end     
+    else
+        @forum  = Forum.find(params[:id])
+        @topics = @forum.topics.includes(:user)
+    end
   end
 end
