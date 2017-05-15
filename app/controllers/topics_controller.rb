@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
   before_action :validate_user!, except: [:show]
+  before_action :validate_company!, except: [:show]
   before_action only: [:edit, :update, :destroy] do
     validate_permission!(set_topic.user)
+    company_validate_permission!(set_topic.company)
   end
   before_action :set_topic, only: [:edit, :update, :destroy]
   before_action only: [:new, :create] {@forum = Forum.find(params[:forum_id])}
@@ -12,7 +14,11 @@ class TopicsController < ApplicationController
 
   def create
     @topic = @forum.topics.new(topic_params)
-    @topic.user = current_user
+    if current_user
+      @topic.user = current_user
+    elsif current_company
+      @topic.company = current_company
+    end
 
     if @topic.save
       redirect_to topic_url(@topic), notice: 'Konu başarıyla oluşturuldu'
@@ -22,8 +28,15 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.includes(:forum, :comments, :user).find(params[:id])
-    @comments = @topic.comments.includes(:user)
+    if current_user
+      @topic = Topic.includes(:forum, :comments, :user).find(params[:id])
+      @comments = @topic.comments.includes(:user)
+    elsif current_company
+      @topic = Topic.includes(:forum, :comments, :company).find(params[:id])
+      @comments = @topic.comments.includes(:company)
+    end
+
+      
   end
 
   def edit() end

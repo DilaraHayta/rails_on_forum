@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
     sayfa = params[:sayfa] || 'konular'
 
     if sayfa == 'konular'
+      # byebug
       @company = Company.includes(:topics).find_by_username(params[:id])
       @data = @company.topics.includes(:forum)
     else

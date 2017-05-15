@@ -2,7 +2,13 @@ class ForumsController < ApplicationController
   before_action {@forums = Forum.all}
 
   def index
-    @topics = Topic.includes(:forum, :user)
+  	if current_user
+    	@topics = Topic.includes(:forum, :user)
+    elsif current_company
+    	@topics = Topic.includes(:forum, :company)
+    else
+    	@topics = Topic.includes(:forum)
+    end
   end
 
   def show

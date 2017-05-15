@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513032250) do
+ActiveRecord::Schema.define(version: 20170514234048) do
 
   create_table "comments", force: true do |t|
     t.text     "body",       null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170513032250) do
     t.datetime "updated_at"
   end
 
+  add_index "companies", ["username"], name: "index_companies_on_username", unique: true
+
   create_table "forums", force: true do |t|
     t.string "name", null: false
   end
@@ -47,10 +49,13 @@ ActiveRecord::Schema.define(version: 20170513032250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", default: 0
+    t.integer  "company_id"
   end
 
+  add_index "topics", ["company_id"], name: "index_topics_on_company_id"
   add_index "topics", ["forum_id"], name: "index_topics_on_forum_id"
   add_index "topics", ["user_id"], name: "index_topics_on_user_id"
+  add_index "topics", [nil], name: "index_topics_on_username", unique: true
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false
