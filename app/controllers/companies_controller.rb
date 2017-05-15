@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :select_company, only: [:show, :edit, :update, :destroy]
   before_action only: [:edit, :update, :destroy] do
-    validate_permission! select_company
+    company_validate_permission! select_company
   end
 
   def new
@@ -23,10 +23,9 @@ class CompaniesController < ApplicationController
     sayfa = params[:sayfa] || 'konular'
 
     if sayfa == 'konular'
-      # byebug
       @company = Company.includes(:topics).find_by_username(params[:id])
       @data = @company.topics.includes(:forum)
-    else
+    elsif sayfa == 'yorumlar'
       @company = Company.includes(:comments).find_by_username(params[:id])
       @data = @company.comments.includes(:topic)
     end

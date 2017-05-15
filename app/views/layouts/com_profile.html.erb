@@ -10,12 +10,12 @@
       <p><%= @company.company_email %></p>
       <div class="button-bar">
         <ul class="button-group radius">
-          <li><%= link_to "İlanlar", com_profile_path(@company, sayfa: 'konular'),
+          <li><%= link_to "İlanlar", company_path(@company, sayfa: 'konular'),
                                      class: 'small button secondary' %></li>
-          <li><%= link_to "Başvurular", com_profile_path(@company, sayfa: 'yorumlar'),
+          <li><%= link_to "Başvurular", company_path(@company, sayfa: 'yorumlar'),
                                       class: 'small button secondary' %></li>
           <% if current_company == @company %>
-            <li><%= link_to "Profilimi düzenle", com_edit_profile_path(@company),
+            <li><%= link_to "Profilimi düzenle", edit_company_path(@company),
                                                  class: 'small button secondary' %></li>
             <li><%= link_to "Hesabımı sil.", @company,
                                              method: :delete,
