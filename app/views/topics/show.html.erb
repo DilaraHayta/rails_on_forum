@@ -2,7 +2,7 @@
 <div class="topics panel columns radius ">
   <h2><%= @topic.title %></h2>
   <p><%= markdown @topic.body  %></p>
-  <%= topic_info(@topic) %>
+ 
 </div>
 <div>
     <%= link_to "Yorum Ekle", new_topic_comment_path(@topic),

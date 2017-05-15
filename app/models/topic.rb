@@ -6,7 +6,8 @@ class Topic < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body,  presence: true, length: {minimum: 20}
-  validates :user,  presence: true
+  validates :user,  presence: false
+  validates :company,  presence: true
   validates :forum, presence: true
 
   default_scope {order 'created_at DESC'}

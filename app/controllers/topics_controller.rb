@@ -1,13 +1,14 @@
 class TopicsController < ApplicationController
-  before_action :validate_user!, except: [:show]
+  # before_action :validate_user!, except: [:show]
   before_action :validate_company!, except: [:show]
   before_action only: [:edit, :update, :destroy] do
-    validate_permission!(set_topic.user)
+    # validate_permission!(set_topic.user)
     company_validate_permission!(set_topic.company)
   end
   before_action :set_topic, only: [:edit, :update, :destroy]
   before_action only: [:new, :create] {@forum = Forum.find(params[:forum_id])}
 
+  
   def new
     @topic = @forum.topics.new
   end
