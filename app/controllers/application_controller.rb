@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_permission!(user)
-    unless current_user == user || current_company == user
+    unless current_user == user
       redirect_to root_url, alert: 'Bu işlemi gerçekleştirmek için gerekli olan yetkiye sahip değilsiniz!'
     end
   end
@@ -58,6 +58,11 @@ class ApplicationController < ActionController::Base
   def validate_company!
     unless company_signed_in?
       redirect_to com_login_url, alert: 'Bu sayfaya erişmeden önce oturum açmalısınız.'
+    end
+  end
+  def company_validate_permission!(company)
+    unless current_company == company
+      redirect_to root_url, alert: 'Bu işlemi gerçekleştirmek için gerekli olan yetkiye sahip değilsiniz!'
     end
   end
 end
